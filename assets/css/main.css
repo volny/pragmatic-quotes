@@ -1289,7 +1289,7 @@
 					border-left: 0;
 				}
 
-				#header nav ul li a {
+				#header nav ul li span {
 					display: block;
 					min-width: 7.5rem;
 					height: 2.75rem;
@@ -1299,13 +1299,14 @@
 					letter-spacing: 0.2rem;
 					font-size: 0.8rem;
 					border-bottom: 0;
+          cursor: pointer;
 				}
 
-					#header nav ul li a:hover {
+					#header nav ul li span:hover {
 						background-color: rgba(255, 255, 255, 0.075);
 					}
 
-					#header nav ul li a:active {
+					#header nav ul li span:active {
 						background-color: rgba(255, 255, 255, 0.175);
 					}
 

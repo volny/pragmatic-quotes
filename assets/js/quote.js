@@ -4,6 +4,21 @@
    * FUNCTIONS
    */
 
+  function getHash() {
+    return location.hash.match(/^#?(.*)$/)[1];
+  }
+
+  function writeHash(id) {
+    var hash = getHash()
+    var url = window.location.href
+    if (hash === "") {
+      $(location).attr('href', url + "#" + id)
+    } else {
+      var baseUrl = url.slice(0, url.lastIndexOf('#'))
+      $(location).attr('href', baseUrl + "#" + id)
+    }
+  }
+
   function closeHeader() {
     $('#inner').css({'padding': '0 2rem'}).css({maxHeight: 0});
   }
@@ -24,7 +39,7 @@
 
   function makeTweet(title, body, hash) {
     var tweet = title + ' - ' + body.slice(0, -1);
-    var link = 'https://volny.co/pragmatic#' + hash;
+    var link = 'https://volny.co/pragmatic/#' + hash;
     return tweet.length > 280
       ? tweet.slice(0, tweet.lastIndexOf(' ', 276 - link.length)) + '...' + ' ' + link
       : tweet + ' ' + link
@@ -38,8 +53,7 @@
   }
 
   function updateTwitterButton(title, body) {
-    // TODO use actual hash
-    var href= makeTwitterLink(makeTweet(title, body, '1'));
+    var href= makeTwitterLink(makeTweet(title, body, getHash()));
     $('#tweetButton').click(function() {
       console.log(href)
       // TODO this better be a modal
@@ -47,9 +61,15 @@
     })
   }
 
-  function injectNew(data) {
-    var randomIndex = Math.floor(Math.random() * data.length);
-    var quote = data[randomIndex];
+  function injectNew(data, id) {
+    var _id;
+    if (id === "") {
+      _id = Math.floor(Math.random() * data.length);
+      writeHash(_id)
+    } else {
+      _id = id
+    }
+    var quote = data[_id];
     $('#titleTarget').text(quote.title);
     $('#bodyTarget').text(quote.body);
 
@@ -62,7 +82,9 @@
 
   $.getJSON('assets/data.json', function(json) {
     var data = json.data;
-    injectNew(data);
+    var id = getHash()
+
+    injectNew(data, id);
 
     /*
      * EVENTS
@@ -76,11 +98,11 @@
 
       closeHeader();
       setTimeout(function() {
-        injectNew(data);
+        injectNew(data, "");
         openHeader(computedPadding);
       }, 1000)
     });
-  })
+  });
 
   /*
    * TWITTER

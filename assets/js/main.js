@@ -1,9 +1,3 @@
-/*
-  Dimension by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-  */
-
 (function($) {
 
   skel.breakpoints({
@@ -31,8 +25,8 @@
     $window.on('load', function() {
       window.setTimeout(function() {
         $body.removeClass('is-loading');
-        }, 100);
-      });
+      }, 100);
+    });
 
     // Fix: Placeholder polyfill.
     $('form').placeholder();
@@ -53,11 +47,11 @@
           else
             $wrapper.css('height', '100vh');
 
-          }, 250);
+        }, 250);
 
-        }).triggerHandler('resize.flexbox-fix');
+      }).triggerHandler('resize.flexbox-fix');
 
-      }
+    }
 
     // Nav.
     var $nav = $header.children('nav'),
@@ -69,7 +63,7 @@
       $nav.addClass('use-middle');
       $nav_li.eq( ($nav_li.length / 2) ).addClass('is-middle');
 
-      }
+    }
 
     // Main.
     var	delay = 325,
@@ -115,14 +109,14 @@
         // Unmark as switching.
         setTimeout(function() {
           $body.removeClass('is-switching');
-          }, (initial ? 1000 : 0));
+        }, (initial ? 1000 : 0));
 
         return;
 
-        }
+      }
 
       // Lock.
-        locked = true;
+      locked = true;
 
       // Article already visible? Just swap articles.
       if ($body.hasClass('is-article-visible')) {
@@ -148,26 +142,26 @@
 
             // Window stuff.
             $window
-            .scrollTop(0)
-            .triggerHandler('resize.flexbox-fix');
+              .scrollTop(0)
+              .triggerHandler('resize.flexbox-fix');
 
             // Unlock.
             setTimeout(function() {
               locked = false;
-              }, delay);
+            }, delay);
 
-            }, 25);
+          }, 25);
 
         }, delay);
 
-        }
+      }
 
       // Otherwise, handle as normal.
       else {
 
         // Mark as visible.
         $body
-        .addClass('is-article-visible');
+          .addClass('is-article-visible');
 
         // Show article.
         setTimeout(function() {
@@ -187,21 +181,21 @@
 
             // Window stuff.
             $window
-            .scrollTop(0)
-            .triggerHandler('resize.flexbox-fix');
+              .scrollTop(0)
+              .triggerHandler('resize.flexbox-fix');
 
             // Unlock.
             setTimeout(function() {
               locked = false;
-              }, delay);
+            }, delay);
 
-            }, 25);
+          }, 25);
 
         }, delay);
 
-        }
+      }
 
-      };
+    };
 
     $main._hide = function(addState) {
 
@@ -246,15 +240,15 @@
 
         // Window stuff.
         $window
-        .scrollTop(0)
-        .triggerHandler('resize.flexbox-fix');
+          .scrollTop(0)
+          .triggerHandler('resize.flexbox-fix');
 
         return;
 
-        }
+      }
 
       // Lock.
-        locked = true;
+      locked = true;
 
       // Deactivate article.
       $article.removeClass('active');
@@ -277,20 +271,20 @@
 
           // Window stuff.
           $window
-          .scrollTop(0)
-          .triggerHandler('resize.flexbox-fix');
+            .scrollTop(0)
+            .triggerHandler('resize.flexbox-fix');
 
           // Unlock.
           setTimeout(function() {
             locked = false;
-            }, delay);
+          }, delay);
 
-          }, 25);
+        }, 25);
 
-        }, delay);
+      }, delay);
 
 
-      };
+    };
 
     // Articles.
     $main_articles.each(function() {
@@ -299,17 +293,17 @@
 
       // Close.
       $('<div class="close">Close</div>')
-      .appendTo($this)
-      .on('click', function() {
-        location.hash = '';
+        .appendTo($this)
+        .on('click', function() {
+          location.hash = '';
         });
 
       // Prevent clicks from inside article from bubbling.
       $this.on('click', function(event) {
         event.stopPropagation();
-        });
-
       });
+
+    });
 
     // Events.
     $body.on('click', function(event) {
@@ -318,26 +312,26 @@
       if ($body.hasClass('is-article-visible'))
         $main._hide(true);
 
-      });
+    });
 
     $window.on('keyup', function(event) {
 
       switch (event.keyCode) {
 
-          case 27:
+        case 27:
 
-          // Article visible? Hide.
-            if ($body.hasClass('is-article-visible'))
+        // Article visible? Hide.
+          if ($body.hasClass('is-article-visible'))
             $main._hide(true);
 
           break;
 
-          default:
-          break;
+        default:
+        break;
 
-          }
+      }
 
-      });
+    });
 
     $window.on('hashchange', function(event) {
 
@@ -352,7 +346,7 @@
         // Hide.
         $main._hide();
 
-        }
+      }
 
       // Otherwise, check for a matching article.
       else if ($main_articles.filter(location.hash).length > 0) {
@@ -364,9 +358,9 @@
         // Show article.
         $main._show(location.hash.substr(1));
 
-        }
+      }
 
-      });
+    });
 
     // Scroll restoration.
     // This prevents the page from scrolling back to the top on a hashchange.
@@ -379,22 +373,22 @@
         $htmlbody = $('html,body');
 
       $window
-      .on('scroll', function() {
+        .on('scroll', function() {
 
-        oldScrollPos = scrollPos;
-        scrollPos = $htmlbody.scrollTop();
+          oldScrollPos = scrollPos;
+          scrollPos = $htmlbody.scrollTop();
 
         })
-      .on('hashchange', function() {
-        $window.scrollTop(oldScrollPos);
+        .on('hashchange', function() {
+          $window.scrollTop(oldScrollPos);
         });
 
-      }
+    }
 
     // Initialize.
 
     // Hide main, articles.
-      $main.hide();
+    $main.hide();
     $main_articles.hide();
 
     // Initial article.
@@ -402,6 +396,6 @@
       &&	location.hash != '#')
       $window.on('load', function() {
         $main._show(location.hash.substr(1), true);
-        });
+      });
   });
 })(jQuery);

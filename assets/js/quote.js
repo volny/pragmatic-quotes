@@ -1,4 +1,9 @@
 (function($) {
+
+  /*
+   * FUNCTIONS
+   */
+
   function closeHeader() {
     $('#inner').css({'padding': '0 2rem'}).css({maxHeight: 0});
   }
@@ -18,6 +23,29 @@
       .css({'maxHeight': (padding*2 + titleHeight + titleMargin + bodyHeight).toString() + 'px'});
   }
 
+
+  function injectNew(data) {
+    var randomIndex = Math.floor(Math.random() * data.length);
+    var quote = data[randomIndex];
+    $('#titleTarget').text(quote.title);
+    $('#bodyTarget').text(quote.body);
+
+    // updateTwitterButton(quote.title, quote.body);
+  }
+
+  /*
+   * DATA
+   */
+
+  $.getJSON('assets/data.json', function(json) {
+    var data = json.data;
+    injectNew(data);
+  })
+
+  /*
+   * EVENTS
+   */
+
   $('#nextButton').click(function(event) {
     event.preventDefault();
 
@@ -36,6 +64,4 @@
     console.log('tweet')
   })
 
-
-})
-
+})(jQuery)

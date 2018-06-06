@@ -1240,7 +1240,8 @@ body.is-loading #bg:before {
   border-color: #ffffff;
   border-top-width: 1px;
   border-bottom-width: 1px;
-  max-width: 100%;
+  /* max-width: 100%; */
+  max-width: 800px;
 }
 
 #header .content .inner {
@@ -1300,6 +1301,7 @@ body.is-loading #bg:before {
   font-size: 0.8rem;
   border-bottom: 0;
   cursor: pointer;
+  font-weight: 700;
 }
 
 #header nav ul li span:hover {

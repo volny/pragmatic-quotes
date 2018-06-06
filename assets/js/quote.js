@@ -18,11 +18,9 @@
     var bodyHeight = getVal($('#bodyTarget').css('height'));
 
     $('#inner')
-    //.css({'padding': padding.toString() + 'px 2rem'})
       .css({'padding': padding.toString() + 'px 2rem'})
       .css({'maxHeight': (padding*2 + titleHeight + titleMargin + bodyHeight).toString() + 'px'});
   }
-
 
   function makeTweet(title, body, hash) {
     var tweet = title + ' - ' + body.slice(0, -1);
@@ -65,29 +63,24 @@
   $.getJSON('assets/data.json', function(json) {
     var data = json.data;
     injectNew(data);
+
+    /*
+     * EVENTS
+     */
+
+    $('#nextButton').click(function(event) {
+      event.preventDefault();
+
+      // gotta get computed style now before closing the header
+      var computedPadding = $('.inner').css('paddingTop');
+
+      closeHeader();
+      setTimeout(function() {
+        injectNew(data);
+        openHeader(computedPadding);
+      }, 1000)
+    });
   })
-
-  /*
-   * EVENTS
-   */
-
-  $('#nextButton').click(function(event) {
-    event.preventDefault();
-
-    // gotta get computed style now before closing the header
-    var computedPadding = $('.inner').css('paddingTop');
-
-    closeHeader();
-    setTimeout(function() {
-      // injectNew(data);
-      openHeader(computedPadding);
-    }, 1000)
-  });
-
-
-  // $('#tweetButton').click(function() {
-  //   console.log('tweet')
-  // })
 
   /*
    * TWITTER

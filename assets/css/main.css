@@ -1244,7 +1244,7 @@ body.is-loading #bg:before {
 #header .content p {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 2;
 }
 
@@ -1269,7 +1269,7 @@ body.is-loading #bg:before {
   border-left: 0;
 }
 
-#header nav ul li span {
+#header nav ul li span, #header nav ul li a {
   display: block;
   min-width: 7.5rem;
   height: 2.75rem;
@@ -1283,11 +1283,11 @@ body.is-loading #bg:before {
   font-weight: 700;
 }
 
-#header nav ul li span:hover {
+#header nav ul li span:hover, #header nav ul li a:hover {
   background-color: rgba(255, 255, 255, 0.075);
 }
 
-#header nav ul li span:active {
+#header nav ul li span:active, #header nav ul li a:active {
   background-color: rgba(255, 255, 255, 0.175);
 }
 
